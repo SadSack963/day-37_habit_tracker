@@ -7,6 +7,12 @@ username = os.environ.get("pixela_username")
 base_url = "https://pixe.la"
 graph_id = "graph1"
 
+# https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
+#   %d - Day of the month as a zero-padded decimal number.
+#   %m - Month as a zero-padded decimal number.
+#   %Y - Year with century as a decimal number.
+today = dt.datetime.now().strftime("%Y%m%d")
+
 headers = {
     "X-USER-TOKEN": token,
 }
@@ -51,19 +57,12 @@ def create_graph():
 
 
 def add_pixel():
-    quantity = input("How many hours have you worked on Python? : ")
-
-    date_now = dt.datetime.now().date()
-    year = date_now.year
-    month = "{:02d}".format(date_now.month)
-    day = "{:02d}".format(date_now.day)
-    date = str(year) + str(month) + str(day)
-    # print(date)
+    quantity = input("How many hours have you worked on Python today? : ")
 
     endpoint_url = f"/v1/users/{username}/graphs/{graph_id}"
 
     params = {
-        "date": date,
+        "date": today,
         "quantity": quantity,
     }
 
@@ -74,7 +73,17 @@ def get_pixel():
     pass
 
 
+def update_pixel():
+    pass
+
+
+def delete_pixel():
+    pass
+
+
 # create_account()
 # create_graph()
 # add_pixel()
-get_pixel()
+# get_pixel()
+# update_pixel()
+# delete_pixel()
