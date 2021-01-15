@@ -25,6 +25,13 @@ def post(endpoint_url, params):
     print(response.text)
 
 
+def put(endpoint_url, params):
+    url = base_url + endpoint_url
+    response = requests.put(url=url, headers=headers, json=params)
+    response.raise_for_status()
+    print(response.text)
+
+
 def create_account():
     # Create user account
     endpoint_url = "/v1/users"
@@ -74,11 +81,27 @@ def get_pixel():
 
 
 def update_pixel():
-    pass
+    date = input("What date do you want to alter? YYYYMMDD : ")
+    quantity = input("How many hours have you worked on Python today? : ")
+
+    endpoint_url = f"/v1/users/{username}/graphs/{graph_id}/{date}"
+
+    params = {
+        "quantity": quantity,
+    }
+
+    put(endpoint_url, params)
 
 
 def delete_pixel():
-    pass
+    date = input("What date do you want to delete? YYYYMMDD : ")
+
+    endpoint_url = f"/v1/users/{username}/graphs/{graph_id}/{date}"
+
+    url = base_url + endpoint_url
+    response = requests.delete(url=url, headers=headers)
+    response.raise_for_status()
+    print(response.text)
 
 
 # create_account()
@@ -86,4 +109,4 @@ def delete_pixel():
 # add_pixel()
 # get_pixel()
 # update_pixel()
-# delete_pixel()
+delete_pixel()
