@@ -1,9 +1,12 @@
 import requests
-import os
 import datetime as dt
+import os
+from dotenv import load_dotenv
 
-token = os.environ.get("pixela_token")
-username = os.environ.get("pixela_username")
+
+load_dotenv("E:/Python/EnvironmentVariables/.env")
+token = os.getenv("pixela_token")
+username = os.getenv("pixela_username")
 base_url = "https://pixe.la"
 graph_id = "graph1"
 
