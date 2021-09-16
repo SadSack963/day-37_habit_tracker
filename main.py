@@ -9,6 +9,8 @@ token = os.getenv("pixela_token")
 username = os.getenv("pixela_username")
 base_url = "https://pixe.la"
 graph_id = "graph1"
+# The graph can be viewed here: https://pixe.la/v1/users/sadsack963/graphs/graph1
+
 
 # https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
 #   %d - Day of the month as a zero-padded decimal number.
@@ -107,9 +109,18 @@ def delete_pixel():
     print(response.text)
 
 
+def delete_account():
+    endpoint_url = f"https://pixe.la/v1/users/{username}"
+
+    response = requests.delete(url=endpoint_url, headers=headers)
+    response.raise_for_status()
+    print(response.text)
+
+
 # create_account()
 # create_graph()
 # add_pixel()
 # get_pixel()
 # update_pixel()
-delete_pixel()
+# delete_pixel()
+# delete_account()
